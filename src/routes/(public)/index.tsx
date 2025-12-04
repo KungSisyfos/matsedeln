@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Route = createFileRoute('/(public)/')({
-  component: RouteComponent,
-})
-
+    component: RouteComponent,
+});
 function RouteComponent() {
-  return <div>Hello "/(public)/"!</div>
+    const { user, loading } = useAuth();
+    return <div>Hello "/(public)/"!</div>;
 }
