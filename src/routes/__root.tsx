@@ -5,17 +5,16 @@ import type { AuthContextType } from '../context/auth-context';
 interface RouterContext {
     auth: AuthContextType;
 }
-const RootLayout = () => {
-    useEffect(() => {}, []);
-    return (
-        <div id="App">
-            <div>
-                <Outlet />
-            </div>
-        </div>
-    );
-};
 
 export const Route = createRootRouteWithContext<RouterContext>()({
     component: RootLayout,
 });
+
+function RootLayout() {
+    useEffect(() => {}, []);
+    return (
+        <div>
+            <Outlet />
+        </div>
+    );
+}
