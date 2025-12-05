@@ -1,20 +1,115 @@
-import { createFileRoute } from '@tanstack/react-router';
-
+import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
 import { supabase } from '../../lib/supabase';
-import { Navigate } from '@tanstack/react-router';
-import { Suspense, useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { z } from 'zod';
+import { Controller, useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { UserPlus2 } from 'lucide-react';
+import { Spinner } from '@/components/ui/spinner';
 export const Route = createFileRoute('/(public)/login')({
     component: RouteComponent,
 });
 
 function RouteComponent() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
     const context = Route.useRouteContext();
     const { auth } = context;
+    const navigate = useNavigate();
 
-    if (auth.user) return <Navigate to="/dashboard" />;
+    const formSchema = z.object({
+        email: z.email(),
+        password: z.string(),
+    });
 
-    return <div className="max-w-md mx-auto mt-20"></div>;
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+    });
+
+    const onSubmit = async (formValues: z.infer<typeof formSchema>) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                ...formValues,
+            });
+            if (error) throw error;
+            navigate({ to: '/dashboard' });
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+                toast.error(err.message);
+            } else {
+                setError('Unknown error has occured');
+            }
+        }
+        setLoading(false);
+    };
+
+    if (auth?.user) return <Navigate to="/dashboard" />;
+    return (
+        <>
+            {loading && <Spinner />}
+            {error && <div>Ett fel har förekommit</div>}
+            <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
+                <Controller
+                    control={form.control}
+                    name="email"
+                    render={({ field, fieldState }) => (
+                        <Field>
+                            <FieldLabel htmlFor="email">Epost</FieldLabel>
+                            <Input
+                                {...field}
+                                id={field.name}
+                                aria-invaild={fieldState.invalid}
+                                type="text"
+                                placeholder="LudwigW123"
+                                autoComplete="off"
+                            />
+                        </Field>
+                    )}
+                />
+                <Controller
+                    control={form.control}
+                    name="password"
+                    render={({ field, fieldState }) => (
+                        <Field>
+                            <FieldLabel htmlFor="password">Lösenord</FieldLabel>
+                            <Input
+                                {...field}
+                                id={field.name}
+                                aria-invalid={fieldState.invalid}
+                                type="password"
+                                placeholder="••••••••"
+                                autoComplete="off"
+                            />
+                        </Field>
+                    )}
+                />
+                <Field orientation="horizontal">
+                    <Button
+                        className="mt-5"
+                        onClick={() => {
+                            navigate({ to: '/register' });
+                        }}
+                        type="button"
+                    >
+                        <UserPlus2 />
+                        Registrera Konto
+                    </Button>
+                    <Button type="submit">Logga in</Button>
+                </Field>
+            </form>
+        </>
+    );
 }

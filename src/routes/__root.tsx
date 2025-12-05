@@ -1,6 +1,7 @@
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import type { AuthContextType } from '../context/auth-context';
+import { Toaster } from '@/components/ui/sonner';
 
 interface RouterContext {
     auth: AuthContextType;
@@ -14,6 +15,7 @@ function RootLayout() {
     useEffect(() => {}, []);
     return (
         <div>
+            <Toaster />
             <Outlet />
         </div>
     );
