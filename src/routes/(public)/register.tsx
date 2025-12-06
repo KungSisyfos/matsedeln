@@ -102,7 +102,7 @@ function RouteComponent() {
                             <Input
                                 {...field}
                                 id={field.name}
-                                aria-invaild={fieldState.invalid}
+                                aria-invalid={fieldState.invalid}
                                 type="text"
                                 placeholder="LudwigW123"
                                 autoComplete="off"
@@ -129,28 +129,47 @@ function RouteComponent() {
                 />
                 <Controller
                     control={form.control}
-                    name="terms"
-                    render={({ field }) => (
+                    name="confirmPassword"
+                    render={({ field, fieldState }) => (
                         <Field>
-                            <div className="flex flex-row gap-3 mt-5 md:mx-5 md:mb-10 ">
-                                <Checkbox
-                                    checked={field.value}
-                                    onCheckedChange={field.onChange}
-                                    className="shadow-black size-6"
-                                />
-                                <div className="mt-2">
-                                    <FieldLabel>Användarvillkor</FieldLabel>
-                                </div>
-                            </div>
+                            <FieldLabel htmlFor="confirmPassword">Bekräfta lösenord</FieldLabel>
+                            <Input
+                                {...field}
+                                id={field.name}
+                                aria-invalid={fieldState.invalid}
+                                type="password"
+                                placeholder="Lösenord"
+                                autoComplete="off"
+                            />
                         </Field>
                     )}
                 />
-                <Field orientation="horizontal">
-                    <Button className="mt-5" type="submit">
-                        <UserPlus2 />
-                        Registrera Konto
-                    </Button>
-                </Field>
+                <div className="flex flex-row">
+                    <Controller
+                        control={form.control}
+                        name="terms"
+                        render={({ field }) => (
+                            <Field>
+                                <div className="flex flex-row gap-3 mt-5 md:mx-5 md:mb-10 ">
+                                    <Checkbox
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                        className="shadow-black size-6"
+                                    />
+                                    <div className="mt-2">
+                                        <FieldLabel>Användarvillkor</FieldLabel>
+                                    </div>
+                                </div>
+                            </Field>
+                        )}
+                    />
+                    <Field orientation="horizontal">
+                        <Button className="mt-5" type="submit">
+                            <UserPlus2 />
+                            Registrera Konto
+                        </Button>
+                    </Field>
+                </div>
             </form>
         </>
     );

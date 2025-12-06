@@ -28,8 +28,6 @@ export function InnerApp() {
             </div>
         );
     }
-
-    console.log('Auth in Innerapp: ', auth);
     return <RouterProvider router={router} context={{ auth }} />;
 }
 createRoot(document.getElementById('root')!).render(

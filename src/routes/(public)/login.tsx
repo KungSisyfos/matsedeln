@@ -72,7 +72,7 @@ function RouteComponent() {
                             <Input
                                 {...field}
                                 id={field.name}
-                                aria-invaild={fieldState.invalid}
+                                aria-invalid={fieldState.invalid}
                                 type="text"
                                 placeholder="LudwigW123"
                                 autoComplete="off"

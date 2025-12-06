@@ -6,7 +6,6 @@ export const Route = createFileRoute('/(public)/')({
 function RouteComponent() {
     const { auth } = Route.useRouteContext();
 
-    // if (auth.loading) return <div>Laddar...</div>;
     if (auth.user) {
         return <Navigate to="/dashboard" />;
     }
