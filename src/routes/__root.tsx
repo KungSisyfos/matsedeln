@@ -15,8 +15,8 @@ function RootLayout() {
     useEffect(() => {}, []);
     return (
         <div>
-            <Toaster />
             <Outlet />
+            <Toaster />
         </div>
     );
 }

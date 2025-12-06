@@ -14,7 +14,7 @@ function RouteComponent() {
         <div>
             <h1>Välkommen</h1>
             <a href="/login">Logga in</a>
-            <a href="/signup">Registrera</a>
+            <a href="/register">Registrera</a>
         </div>
     );
 }

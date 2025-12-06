@@ -41,7 +41,8 @@ function RouteComponent() {
 
         try {
             const { error } = await supabase.auth.signInWithPassword({
-                ...formValues,
+                email: formValues.email,
+                password: formValues.password,
             });
             if (error) throw error;
             navigate({ to: '/dashboard' });
@@ -90,7 +91,7 @@ function RouteComponent() {
                                 id={field.name}
                                 aria-invalid={fieldState.invalid}
                                 type="password"
-                                placeholder="••••••••"
+                                placeholder="Lösenord"
                                 autoComplete="off"
                             />
                         </Field>
