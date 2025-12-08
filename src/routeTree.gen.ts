@@ -15,6 +15,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as publicRegisterRouteImport } from './routes/(public)/register'
 import { Route as publicLoginRouteImport } from './routes/(public)/login'
+import { Route as DashboardRecipesIdRouteImport } from './routes/dashboard/recipes/$id'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -45,6 +46,11 @@ const publicLoginRoute = publicLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => publicRouteRoute,
 } as any)
+const DashboardRecipesIdRoute = DashboardRecipesIdRouteImport.update({
+  id: '/recipes/$id',
+  path: '/recipes/$id',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteRouteWithChildren
@@ -52,12 +58,14 @@ export interface FileRoutesByFullPath {
   '/register': typeof publicRegisterRoute
   '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
   '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,12 +75,19 @@ export interface FileRoutesById {
   '/(public)/register': typeof publicRegisterRoute
   '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/dashboard' | '/login' | '/register' | '/' | '/dashboard/'
+  fullPaths:
+    | '/dashboard'
+    | '/login'
+    | '/register'
+    | '/'
+    | '/dashboard/'
+    | '/dashboard/recipes/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/register' | '/' | '/dashboard'
+  to: '/login' | '/register' | '/' | '/dashboard' | '/dashboard/recipes/$id'
   id:
     | '__root__'
     | '/(public)'
@@ -81,6 +96,7 @@ export interface FileRouteTypes {
     | '/(public)/register'
     | '/(public)/'
     | '/dashboard/'
+    | '/dashboard/recipes/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +148,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicLoginRouteImport
       parentRoute: typeof publicRouteRoute
     }
+    '/dashboard/recipes/$id': {
+      id: '/dashboard/recipes/$id'
+      path: '/recipes/$id'
+      fullPath: '/dashboard/recipes/$id'
+      preLoaderRoute: typeof DashboardRecipesIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
   }
 }
 
@@ -153,10 +176,12 @@ const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
 
 interface DashboardRouteRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardRecipesIdRoute: typeof DashboardRecipesIdRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardRecipesIdRoute: DashboardRecipesIdRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(

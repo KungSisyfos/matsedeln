@@ -25,16 +25,14 @@ function RouteComponent() {
             email: z.email(),
             password: z
                 .string()
-                .min(8, 'Lösenordet måste innehålla 8 tecken')
+                .min(6, 'Lösenordet måste innehålla 8 tecken')
                 .max(100, 'Lösenordet får som mesta innehålla 100 tecken')
-                .regex(/[0-9]/, 'Där måste finnas minst ett nummer')
-                .regex(/[!@#$%^&*()_+]/, 'Där måste finnas minst ett specialtecken'),
+                .regex(/[0-9]/, 'Där måste finnas minst ett nummer'),
             confirmPassword: z
                 .string()
-                .min(8, 'Lösenordet måste innehålla 8 tecken')
+                .min(6, 'Lösenordet måste innehålla 8 tecken')
                 .max(100, 'Lösenordet får som mesta innehålla 100 tecken')
-                .regex(/[0-9]/, 'Där måste finnas minst ett nummer')
-                .regex(/[!@#$%^&*()_+]/, 'Där måste finnas minst ett specialtecken'),
+                .regex(/[0-9]/, 'Där måste finnas minst ett nummer'),
             terms: z.boolean().refine((val) => val, { message: 'Du måste acceptera användarvillkoren' }),
         })
         .superRefine(({ confirmPassword, password }, ctx) => {
