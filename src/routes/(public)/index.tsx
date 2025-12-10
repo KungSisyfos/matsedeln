@@ -9,11 +9,10 @@ function RouteComponent() {
     if (auth.user) {
         return <Navigate to="/dashboard" />;
     }
+
     return (
         <div>
             <h1>Välkommen</h1>
-            <a href="/login">Logga in</a>
-            <a href="/register">Registrera</a>
         </div>
     );
 }

@@ -61,7 +61,7 @@ function RouteComponent() {
     return (
         <>
             {loading && <Spinner />}
-            {error && <div>Ett fel har förekommit</div>}
+            {error && <div>Ett fel har förekommit {error}</div>}
             <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
                 <Controller
                     control={form.control}

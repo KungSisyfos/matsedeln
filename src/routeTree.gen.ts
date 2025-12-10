@@ -15,7 +15,10 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as publicRegisterRouteImport } from './routes/(public)/register'
 import { Route as publicLoginRouteImport } from './routes/(public)/login'
+import { Route as DashboardRecipesIndexRouteImport } from './routes/dashboard/recipes/index'
+import { Route as DashboardMenusIndexRouteImport } from './routes/dashboard/menus/index'
 import { Route as DashboardRecipesIdRouteImport } from './routes/dashboard/recipes/$id'
+import { Route as DashboardMenusIdRouteImport } from './routes/dashboard/menus/$id'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -46,9 +49,24 @@ const publicLoginRoute = publicLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => publicRouteRoute,
 } as any)
+const DashboardRecipesIndexRoute = DashboardRecipesIndexRouteImport.update({
+  id: '/recipes/',
+  path: '/recipes/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardMenusIndexRoute = DashboardMenusIndexRouteImport.update({
+  id: '/menus/',
+  path: '/menus/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardRecipesIdRoute = DashboardRecipesIdRouteImport.update({
   id: '/recipes/$id',
   path: '/recipes/$id',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardMenusIdRoute = DashboardMenusIdRouteImport.update({
+  id: '/menus/$id',
+  path: '/menus/$id',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
@@ -58,14 +76,20 @@ export interface FileRoutesByFullPath {
   '/register': typeof publicRegisterRoute
   '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/menus/$id': typeof DashboardMenusIdRoute
   '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
+  '/dashboard/menus': typeof DashboardMenusIndexRoute
+  '/dashboard/recipes': typeof DashboardRecipesIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
   '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/menus/$id': typeof DashboardMenusIdRoute
   '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
+  '/dashboard/menus': typeof DashboardMenusIndexRoute
+  '/dashboard/recipes': typeof DashboardRecipesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -75,7 +99,10 @@ export interface FileRoutesById {
   '/(public)/register': typeof publicRegisterRoute
   '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/menus/$id': typeof DashboardMenusIdRoute
   '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
+  '/dashboard/menus/': typeof DashboardMenusIndexRoute
+  '/dashboard/recipes/': typeof DashboardRecipesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -85,9 +112,20 @@ export interface FileRouteTypes {
     | '/register'
     | '/'
     | '/dashboard/'
+    | '/dashboard/menus/$id'
     | '/dashboard/recipes/$id'
+    | '/dashboard/menus'
+    | '/dashboard/recipes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/register' | '/' | '/dashboard' | '/dashboard/recipes/$id'
+  to:
+    | '/login'
+    | '/register'
+    | '/'
+    | '/dashboard'
+    | '/dashboard/menus/$id'
+    | '/dashboard/recipes/$id'
+    | '/dashboard/menus'
+    | '/dashboard/recipes'
   id:
     | '__root__'
     | '/(public)'
@@ -96,7 +134,10 @@ export interface FileRouteTypes {
     | '/(public)/register'
     | '/(public)/'
     | '/dashboard/'
+    | '/dashboard/menus/$id'
     | '/dashboard/recipes/$id'
+    | '/dashboard/menus/'
+    | '/dashboard/recipes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -148,11 +189,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicLoginRouteImport
       parentRoute: typeof publicRouteRoute
     }
+    '/dashboard/recipes/': {
+      id: '/dashboard/recipes/'
+      path: '/recipes'
+      fullPath: '/dashboard/recipes'
+      preLoaderRoute: typeof DashboardRecipesIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/menus/': {
+      id: '/dashboard/menus/'
+      path: '/menus'
+      fullPath: '/dashboard/menus'
+      preLoaderRoute: typeof DashboardMenusIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/dashboard/recipes/$id': {
       id: '/dashboard/recipes/$id'
       path: '/recipes/$id'
       fullPath: '/dashboard/recipes/$id'
       preLoaderRoute: typeof DashboardRecipesIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/menus/$id': {
+      id: '/dashboard/menus/$id'
+      path: '/menus/$id'
+      fullPath: '/dashboard/menus/$id'
+      preLoaderRoute: typeof DashboardMenusIdRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
   }
@@ -176,12 +238,18 @@ const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
 
 interface DashboardRouteRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardMenusIdRoute: typeof DashboardMenusIdRoute
   DashboardRecipesIdRoute: typeof DashboardRecipesIdRoute
+  DashboardMenusIndexRoute: typeof DashboardMenusIndexRoute
+  DashboardRecipesIndexRoute: typeof DashboardRecipesIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardMenusIdRoute: DashboardMenusIdRoute,
   DashboardRecipesIdRoute: DashboardRecipesIdRoute,
+  DashboardMenusIndexRoute: DashboardMenusIndexRoute,
+  DashboardRecipesIndexRoute: DashboardRecipesIndexRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
