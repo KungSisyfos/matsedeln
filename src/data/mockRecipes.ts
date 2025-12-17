@@ -1,4 +1,4 @@
-const mockRecipies = [
+export const mockRecipes = [
     {
         id: 1,
         name: 'Chili sin Carne med Ris',
@@ -761,5 +761,3 @@ const mockRecipies = [
             'Blanda kycklingfärs, mixade bönor, hackad gul lök, potatismjöl och kryddorna väl. Olja en ugnssäker form. Forma den blandade färsen till en limpa och grädda i ugn på 180 grader i ca 25 minuter. Tempa limpan till minst 75 grader innertemperatur. Lös upp buljongtärningarna i vattnet. Tillsätt sojasåsen och smaka av med salt, peppar och lite timjan. Red av med maizena till önskad konsistens. Blanda lingon med socker och låt stå till servering. Koka potatis i lättsaltat vatten. Häll av vattnet och slå upp potatis i en bunke mosa lite lätt med en ballongvisp. Tillsätt rapsolja och smaka av med lite salt. Servera den uppskurna limpan med smashad potatis, skysås och rårörda lingon.',
     },
 ];
-
-export default mockRecipies;

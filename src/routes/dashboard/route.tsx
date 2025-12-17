@@ -1,9 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { Button } from '@/components/ui/button';
+
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/dashboard')({
-  component: RouteComponent,
-})
+    component: RouteComponent,
+});
 
 function RouteComponent() {
-  return <div>Hello "/dashboard"!</div>
+    return (
+        <div>
+            <h1>Hello "/dashboard"!</h1>
+            <Button>Logga ut</Button>
+        </div>
+    );
 }

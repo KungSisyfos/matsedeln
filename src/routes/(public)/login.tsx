@@ -3,12 +3,12 @@ import { supabase } from '../../lib/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { Field, FieldLabel } from '@/components/ui/field';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Field, FieldLabel, FieldDescription, FieldGroup } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
-import { UserPlus2 } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
 export const Route = createFileRoute('/(public)/login')({
     component: RouteComponent,
@@ -62,55 +62,79 @@ function RouteComponent() {
         <>
             {loading && <Spinner />}
             {error && <div>Ett fel har förekommit {error}</div>}
-            <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
-                <Controller
-                    control={form.control}
-                    name="email"
-                    render={({ field, fieldState }) => (
-                        <Field>
-                            <FieldLabel htmlFor="email">Epost</FieldLabel>
-                            <Input
-                                {...field}
-                                id={field.name}
-                                aria-invalid={fieldState.invalid}
-                                type="text"
-                                placeholder="LudwigW123"
-                                autoComplete="off"
-                            />
-                        </Field>
-                    )}
-                />
-                <Controller
-                    control={form.control}
-                    name="password"
-                    render={({ field, fieldState }) => (
-                        <Field>
-                            <FieldLabel htmlFor="password">Lösenord</FieldLabel>
-                            <Input
-                                {...field}
-                                id={field.name}
-                                aria-invalid={fieldState.invalid}
-                                type="password"
-                                placeholder="Lösenord"
-                                autoComplete="off"
-                            />
-                        </Field>
-                    )}
-                />
-                <Field orientation="horizontal">
-                    <Button
-                        className="mt-5"
-                        onClick={() => {
-                            navigate({ to: '/register' });
-                        }}
-                        type="button"
-                    >
-                        <UserPlus2 />
-                        Registrera Konto
-                    </Button>
-                    <Button type="submit">Logga in</Button>
-                </Field>
-            </form>
+            <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+                <div className="flex w-full max-w-sm flex-col gap-6">
+                    <div className="flex flex-col gap-6">
+                        <Card>
+                            <CardHeader className="text-center">
+                                <CardTitle className="text-xl">Välkommen</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
+                                    <FieldGroup>
+                                        <Controller
+                                            control={form.control}
+                                            name="email"
+                                            render={({ field, fieldState }) => (
+                                                <Field>
+                                                    <FieldLabel htmlFor="email">Epost</FieldLabel>
+                                                    <Input
+                                                        {...field}
+                                                        id={field.name}
+                                                        aria-invalid={fieldState.invalid}
+                                                        type="text"
+                                                        placeholder="LudwigW123"
+                                                        autoComplete="off"
+                                                    />
+                                                </Field>
+                                            )}
+                                        />
+                                        <Controller
+                                            control={form.control}
+                                            name="password"
+                                            render={({ field, fieldState }) => (
+                                                <Field>
+                                                    <FieldLabel htmlFor="password">Lösenord</FieldLabel>
+                                                    <Input
+                                                        {...field}
+                                                        id={field.name}
+                                                        aria-invalid={fieldState.invalid}
+                                                        type="password"
+                                                        placeholder="Lösenord"
+                                                        autoComplete="off"
+                                                    />
+                                                </Field>
+                                            )}
+                                        />
+                                        <Field>
+                                            <div className="flex items-center">
+                                                <FieldLabel htmlFor="password">lösenord</FieldLabel>
+                                                <a
+                                                    href="#"
+                                                    className="ml-auto text-sm underline-offset-4 hover:underline"
+                                                >
+                                                    Glömt ditt lösenord?
+                                                </a>
+                                            </div>
+                                            <Input id="password" type="password" required />
+                                        </Field>
+                                        <Field>
+                                            <Button type="submit">Logga in</Button>
+                                            <FieldDescription className="text-center">
+                                                Har du inget konto <a href="/register">Registrera dig här</a>
+                                            </FieldDescription>
+                                        </Field>
+                                    </FieldGroup>
+                                </form>
+                            </CardContent>
+                        </Card>
+                        <FieldDescription className="px-6 text-center">
+                            By clicking continue, you agree to our <a href="#">Terms of Service</a> and{' '}
+                            <a href="#">Privacy Policy</a>.
+                        </FieldDescription>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
