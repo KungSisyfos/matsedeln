@@ -10,7 +10,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     return (
         <>
-            <div className="w-full bg-[#251AD1]">
+            <div className="w-full bg-[#251AD1] border-b-4 border-[#00008B]">
                 <div className=" mx-10 flex flex-row justify-between">
                     <Link to="/" className="flex py-3 cursor">
                         <img src={matsedelnLogo} alt="logo for the matsedeln website" className="size-12 mx-5" />

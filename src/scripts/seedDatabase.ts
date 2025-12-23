@@ -1,8 +1,20 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 import { mockRecipes } from '@/data/mockRecipes';
+import path from 'path';
+
+const result = dotenv.config({
+    path: path.resolve(process.cwd(), '.env'),
+});
+
+console.log('Dotenv result:', result);
+console.log('Current directory:', process.cwd());
+console.log('Looking for .env at:', path.resolve(process.cwd(), '.env'));
 
 dotenv.config();
+
+console.log('URL:', process.env.VITE_SUPABASE_URL);
+console.log('KEY:', process.env.VITE_SUPABASE_ANON_KEY);
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL!;
 const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY!;

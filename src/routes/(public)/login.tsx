@@ -108,7 +108,6 @@ function RouteComponent() {
                                         />
                                         <Field>
                                             <div className="flex items-center">
-                                                <FieldLabel htmlFor="password">lösenord</FieldLabel>
                                                 <a
                                                     href="#"
                                                     className="ml-auto text-sm underline-offset-4 hover:underline"
@@ -116,7 +115,6 @@ function RouteComponent() {
                                                     Glömt ditt lösenord?
                                                 </a>
                                             </div>
-                                            <Input id="password" type="password" required />
                                         </Field>
                                         <Field>
                                             <Button type="submit">Logga in</Button>
