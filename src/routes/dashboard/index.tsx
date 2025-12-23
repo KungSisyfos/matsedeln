@@ -21,6 +21,7 @@ function RouteComponent() {
     }
     return (
         <div>
+            {/* form med en on submit knapp och ett val i en dropdown med 1 - 4 som skickas med och in i generateMealPlan */}
             <h1>Dashboard</h1>
             <p>Välkommen!</p>
             <button onClick={() => auth.signOut()}>Logga ut</button>

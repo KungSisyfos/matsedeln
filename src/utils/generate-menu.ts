@@ -33,7 +33,7 @@ const generateMealPlan = (availableRecipes: Recipe[], numberOfWeeks: number) => 
         allWeeks.push(weekMeals);
     }
 
-    return shuffledMealPlan;
+    return allWeeks;
 };
 
 export default generateMealPlan;
