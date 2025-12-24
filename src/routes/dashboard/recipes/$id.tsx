@@ -6,6 +6,12 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Clock, Users, ChefHat } from 'lucide-react';
 
+type Ingredient = {
+    name: string;
+    unit?: string;
+    amount?: string | number;
+};
+
 export const Route = createFileRoute('/dashboard/recipes/$id')({
     component: RouteComponent,
 });
@@ -13,7 +19,6 @@ export const Route = createFileRoute('/dashboard/recipes/$id')({
 function RouteComponent() {
     const { id } = Route.useParams();
     const numId = Number(id);
-
     const [recipe, setRecipe] = useState<Recipe | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -65,7 +70,7 @@ function RouteComponent() {
         );
     }
 
-    const ingredients = Array.isArray(recipe.ingredients) ? (recipe.ingredients as string[]) : [];
+    const ingredients = Array.isArray(recipe.ingredients) ? (recipe.ingredients as Ingredient[]) : [];
 
     return (
         <div className="max-w-4xl mx-auto space-y-6">
@@ -110,7 +115,11 @@ function RouteComponent() {
                             {ingredients.map((ingredient, index) => (
                                 <li key={index} className="flex items-start gap-2">
                                     <span className="text-primary mt-1">•</span>
-                                    <span className="text-lg">{ingredient}</span>
+                                    <span className="text-lg">
+                                        {ingredient.amount && <strong>{ingredient.amount} </strong>}
+                                        {ingredient.unit && <span>{ingredient.unit} </span>}
+                                        {ingredient.name}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
