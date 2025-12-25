@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
+import { createFileRoute, Link, redirect } from '@tanstack/react-router';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -278,12 +278,13 @@ function RouteComponent() {
                                                     <tr key={index} className="border-b last:border-0">
                                                         <td className="py-3 px-4 font-medium">{meal.day}</td>
                                                         <td className="py-3 px-4">
-                                                            <a
-                                                                href={`/dashboard/recipes/${meal.recipe_id}`}
+                                                            <Link
+                                                                to="/dashboard/recipes/$id"
+                                                                params={{ id: meal.recipe_id.toString() }}
                                                                 className="text-primary hover:underline no-print:hover:text-primary/80"
                                                             >
                                                                 {meal.recipe_name}
-                                                            </a>
+                                                            </Link>
                                                         </td>
                                                     </tr>
                                                 ))}
