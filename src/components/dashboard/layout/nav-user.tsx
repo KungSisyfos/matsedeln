@@ -11,6 +11,8 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
 
 export function NavUser({
     user,
@@ -22,6 +24,16 @@ export function NavUser({
     };
 }) {
     const { isMobile } = useSidebar();
+    const handleSignOut = async () => {
+        try {
+            await supabase.auth.signOut();
+            window.location.href = '/login';
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error('Kunde inte logga ut');
+            }
+        }
+    };
 
     return (
         <SidebarMenu>
@@ -88,7 +100,8 @@ export function NavUser({
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={handleSignOut}>
+                            Logga ut
                             <LogOut className="mt-0.5" />
                         </DropdownMenuItem>
                     </DropdownMenuContent>

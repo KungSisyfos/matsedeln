@@ -8,258 +8,252 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
-import { Route as publicRouteRouteImport } from './routes/(public)/route'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
-import { Route as publicIndexRouteImport } from './routes/(public)/index'
-import { Route as publicRegisterRouteImport } from './routes/(public)/register'
-import { Route as publicLoginRouteImport } from './routes/(public)/login'
-import { Route as DashboardRecipesIndexRouteImport } from './routes/dashboard/recipes/index'
-import { Route as DashboardMenusIndexRouteImport } from './routes/dashboard/menus/index'
-import { Route as DashboardRecipesIdRouteImport } from './routes/dashboard/recipes/$id'
-import { Route as DashboardMenusIdRouteImport } from './routes/dashboard/menus/$id'
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as DashboardRouteRouteImport } from './routes/dashboard/route';
+import { Route as publicRouteRouteImport } from './routes/(public)/route';
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index';
+import { Route as publicIndexRouteImport } from './routes/(public)/index';
+import { Route as publicRegisterRouteImport } from './routes/(public)/register';
+import { Route as publicLoginRouteImport } from './routes/(public)/login';
+import { Route as DashboardRecipesIndexRouteImport } from './routes/dashboard/recipes/index';
+import { Route as DashboardMenusIndexRouteImport } from './routes/dashboard/menus/index';
+import { Route as DashboardRecipesIdRouteImport } from './routes/dashboard/recipes/$id';
+import { Route as DashboardMenusIdRouteImport } from './routes/dashboard/menus/$id';
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => rootRouteImport,
+} as any);
 const publicRouteRoute = publicRouteRouteImport.update({
-  id: '/(public)',
-  getParentRoute: () => rootRouteImport,
-} as any)
+    id: '/(public)',
+    getParentRoute: () => rootRouteImport,
+} as any);
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
+    id: '/',
+    path: '/',
+    getParentRoute: () => DashboardRouteRoute,
+} as any);
 const publicIndexRoute = publicIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => publicRouteRoute,
-} as any)
+    id: '/',
+    path: '/',
+    getParentRoute: () => publicRouteRoute,
+} as any);
 const publicRegisterRoute = publicRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => publicRouteRoute,
-} as any)
+    id: '/register',
+    path: '/register',
+    getParentRoute: () => publicRouteRoute,
+} as any);
 const publicLoginRoute = publicLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => publicRouteRoute,
-} as any)
+    id: '/login',
+    path: '/login',
+    getParentRoute: () => publicRouteRoute,
+} as any);
 const DashboardRecipesIndexRoute = DashboardRecipesIndexRouteImport.update({
-  id: '/recipes/',
-  path: '/recipes/',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
+    id: '/recipes/',
+    path: '/recipes/',
+    getParentRoute: () => DashboardRouteRoute,
+} as any);
 const DashboardMenusIndexRoute = DashboardMenusIndexRouteImport.update({
-  id: '/menus/',
-  path: '/menus/',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
+    id: '/menus/',
+    path: '/menus/',
+    getParentRoute: () => DashboardRouteRoute,
+} as any);
 const DashboardRecipesIdRoute = DashboardRecipesIdRouteImport.update({
-  id: '/recipes/$id',
-  path: '/recipes/$id',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
+    id: '/recipes/$id',
+    path: '/recipes/$id',
+    getParentRoute: () => DashboardRouteRoute,
+} as any);
 const DashboardMenusIdRoute = DashboardMenusIdRouteImport.update({
-  id: '/menus/$id',
-  path: '/menus/$id',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
+    id: '/menus/$id',
+    path: '/menus/$id',
+    getParentRoute: () => DashboardRouteRoute,
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/dashboard': typeof DashboardRouteRouteWithChildren
-  '/login': typeof publicLoginRoute
-  '/register': typeof publicRegisterRoute
-  '/': typeof publicIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
-  '/dashboard/menus/$id': typeof DashboardMenusIdRoute
-  '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
-  '/dashboard/menus': typeof DashboardMenusIndexRoute
-  '/dashboard/recipes': typeof DashboardRecipesIndexRoute
+    '/dashboard': typeof DashboardRouteRouteWithChildren;
+    '/login': typeof publicLoginRoute;
+    '/register': typeof publicRegisterRoute;
+    '/': typeof publicIndexRoute;
+    '/dashboard/': typeof DashboardIndexRoute;
+    '/dashboard/menus/$id': typeof DashboardMenusIdRoute;
+    '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute;
+    '/dashboard/menus': typeof DashboardMenusIndexRoute;
+    '/dashboard/recipes': typeof DashboardRecipesIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/login': typeof publicLoginRoute
-  '/register': typeof publicRegisterRoute
-  '/': typeof publicIndexRoute
-  '/dashboard': typeof DashboardIndexRoute
-  '/dashboard/menus/$id': typeof DashboardMenusIdRoute
-  '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
-  '/dashboard/menus': typeof DashboardMenusIndexRoute
-  '/dashboard/recipes': typeof DashboardRecipesIndexRoute
+    '/login': typeof publicLoginRoute;
+    '/register': typeof publicRegisterRoute;
+    '/': typeof publicIndexRoute;
+    '/dashboard': typeof DashboardIndexRoute;
+    '/dashboard/menus/$id': typeof DashboardMenusIdRoute;
+    '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute;
+    '/dashboard/menus': typeof DashboardMenusIndexRoute;
+    '/dashboard/recipes': typeof DashboardRecipesIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/(public)': typeof publicRouteRouteWithChildren
-  '/dashboard': typeof DashboardRouteRouteWithChildren
-  '/(public)/login': typeof publicLoginRoute
-  '/(public)/register': typeof publicRegisterRoute
-  '/(public)/': typeof publicIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
-  '/dashboard/menus/$id': typeof DashboardMenusIdRoute
-  '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute
-  '/dashboard/menus/': typeof DashboardMenusIndexRoute
-  '/dashboard/recipes/': typeof DashboardRecipesIndexRoute
+    __root__: typeof rootRouteImport;
+    '/(public)': typeof publicRouteRouteWithChildren;
+    '/dashboard': typeof DashboardRouteRouteWithChildren;
+    '/(public)/login': typeof publicLoginRoute;
+    '/(public)/register': typeof publicRegisterRoute;
+    '/(public)/': typeof publicIndexRoute;
+    '/dashboard/': typeof DashboardIndexRoute;
+    '/dashboard/menus/$id': typeof DashboardMenusIdRoute;
+    '/dashboard/recipes/$id': typeof DashboardRecipesIdRoute;
+    '/dashboard/menus/': typeof DashboardMenusIndexRoute;
+    '/dashboard/recipes/': typeof DashboardRecipesIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/dashboard'
-    | '/login'
-    | '/register'
-    | '/'
-    | '/dashboard/'
-    | '/dashboard/menus/$id'
-    | '/dashboard/recipes/$id'
-    | '/dashboard/menus'
-    | '/dashboard/recipes'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/login'
-    | '/register'
-    | '/'
-    | '/dashboard'
-    | '/dashboard/menus/$id'
-    | '/dashboard/recipes/$id'
-    | '/dashboard/menus'
-    | '/dashboard/recipes'
-  id:
-    | '__root__'
-    | '/(public)'
-    | '/dashboard'
-    | '/(public)/login'
-    | '/(public)/register'
-    | '/(public)/'
-    | '/dashboard/'
-    | '/dashboard/menus/$id'
-    | '/dashboard/recipes/$id'
-    | '/dashboard/menus/'
-    | '/dashboard/recipes/'
-  fileRoutesById: FileRoutesById
+    fileRoutesByFullPath: FileRoutesByFullPath;
+    fullPaths:
+        | '/dashboard'
+        | '/login'
+        | '/register'
+        | '/'
+        | '/dashboard/'
+        | '/dashboard/menus/$id'
+        | '/dashboard/recipes/$id'
+        | '/dashboard/menus'
+        | '/dashboard/recipes';
+    fileRoutesByTo: FileRoutesByTo;
+    to:
+        | '/login'
+        | '/register'
+        | '/'
+        | '/dashboard'
+        | '/dashboard/menus/$id'
+        | '/dashboard/recipes/$id'
+        | '/dashboard/menus'
+        | '/dashboard/recipes';
+    id:
+        | '__root__'
+        | '/(public)'
+        | '/dashboard'
+        | '/(public)/login'
+        | '/(public)/register'
+        | '/(public)/'
+        | '/dashboard/'
+        | '/dashboard/menus/$id'
+        | '/dashboard/recipes/$id'
+        | '/dashboard/menus/'
+        | '/dashboard/recipes/';
+    fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  publicRouteRoute: typeof publicRouteRouteWithChildren
-  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+    publicRouteRoute: typeof publicRouteRouteWithChildren;
+    DashboardRouteRoute: typeof DashboardRouteRouteWithChildren;
 }
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteRouteImport
-      parentRoute: typeof rootRouteImport
+    interface FileRoutesByPath {
+        '/dashboard': {
+            id: '/dashboard';
+            path: '/dashboard';
+            fullPath: '/dashboard';
+            preLoaderRoute: typeof DashboardRouteRouteImport;
+            parentRoute: typeof rootRouteImport;
+        };
+        '/(public)': {
+            id: '/(public)';
+            path: '';
+            fullPath: '';
+            preLoaderRoute: typeof publicRouteRouteImport;
+            parentRoute: typeof rootRouteImport;
+        };
+        '/dashboard/': {
+            id: '/dashboard/';
+            path: '/';
+            fullPath: '/dashboard/';
+            preLoaderRoute: typeof DashboardIndexRouteImport;
+            parentRoute: typeof DashboardRouteRoute;
+        };
+        '/(public)/': {
+            id: '/(public)/';
+            path: '/';
+            fullPath: '/';
+            preLoaderRoute: typeof publicIndexRouteImport;
+            parentRoute: typeof publicRouteRoute;
+        };
+        '/(public)/register': {
+            id: '/(public)/register';
+            path: '/register';
+            fullPath: '/register';
+            preLoaderRoute: typeof publicRegisterRouteImport;
+            parentRoute: typeof publicRouteRoute;
+        };
+        '/(public)/login': {
+            id: '/(public)/login';
+            path: '/login';
+            fullPath: '/login';
+            preLoaderRoute: typeof publicLoginRouteImport;
+            parentRoute: typeof publicRouteRoute;
+        };
+        '/dashboard/recipes/': {
+            id: '/dashboard/recipes/';
+            path: '/recipes';
+            fullPath: '/dashboard/recipes';
+            preLoaderRoute: typeof DashboardRecipesIndexRouteImport;
+            parentRoute: typeof DashboardRouteRoute;
+        };
+        '/dashboard/menus/': {
+            id: '/dashboard/menus/';
+            path: '/menus';
+            fullPath: '/dashboard/menus';
+            preLoaderRoute: typeof DashboardMenusIndexRouteImport;
+            parentRoute: typeof DashboardRouteRoute;
+        };
+        '/dashboard/recipes/$id': {
+            id: '/dashboard/recipes/$id';
+            path: '/recipes/$id';
+            fullPath: '/dashboard/recipes/$id';
+            preLoaderRoute: typeof DashboardRecipesIdRouteImport;
+            parentRoute: typeof DashboardRouteRoute;
+        };
+        '/dashboard/menus/$id': {
+            id: '/dashboard/menus/$id';
+            path: '/menus/$id';
+            fullPath: '/dashboard/menus/$id';
+            preLoaderRoute: typeof DashboardMenusIdRouteImport;
+            parentRoute: typeof DashboardRouteRoute;
+        };
     }
-    '/(public)': {
-      id: '/(public)'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof publicRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
-    '/(public)/': {
-      id: '/(public)/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof publicIndexRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/register': {
-      id: '/(public)/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof publicRegisterRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/login': {
-      id: '/(public)/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof publicLoginRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/dashboard/recipes/': {
-      id: '/dashboard/recipes/'
-      path: '/recipes'
-      fullPath: '/dashboard/recipes'
-      preLoaderRoute: typeof DashboardRecipesIndexRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
-    '/dashboard/menus/': {
-      id: '/dashboard/menus/'
-      path: '/menus'
-      fullPath: '/dashboard/menus'
-      preLoaderRoute: typeof DashboardMenusIndexRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
-    '/dashboard/recipes/$id': {
-      id: '/dashboard/recipes/$id'
-      path: '/recipes/$id'
-      fullPath: '/dashboard/recipes/$id'
-      preLoaderRoute: typeof DashboardRecipesIdRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
-    '/dashboard/menus/$id': {
-      id: '/dashboard/menus/$id'
-      path: '/menus/$id'
-      fullPath: '/dashboard/menus/$id'
-      preLoaderRoute: typeof DashboardMenusIdRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
-  }
 }
 
 interface publicRouteRouteChildren {
-  publicLoginRoute: typeof publicLoginRoute
-  publicRegisterRoute: typeof publicRegisterRoute
-  publicIndexRoute: typeof publicIndexRoute
+    publicLoginRoute: typeof publicLoginRoute;
+    publicRegisterRoute: typeof publicRegisterRoute;
+    publicIndexRoute: typeof publicIndexRoute;
 }
 
 const publicRouteRouteChildren: publicRouteRouteChildren = {
-  publicLoginRoute: publicLoginRoute,
-  publicRegisterRoute: publicRegisterRoute,
-  publicIndexRoute: publicIndexRoute,
-}
+    publicLoginRoute: publicLoginRoute,
+    publicRegisterRoute: publicRegisterRoute,
+    publicIndexRoute: publicIndexRoute,
+};
 
-const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
-  publicRouteRouteChildren,
-)
+const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(publicRouteRouteChildren);
 
 interface DashboardRouteRouteChildren {
-  DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardMenusIdRoute: typeof DashboardMenusIdRoute
-  DashboardRecipesIdRoute: typeof DashboardRecipesIdRoute
-  DashboardMenusIndexRoute: typeof DashboardMenusIndexRoute
-  DashboardRecipesIndexRoute: typeof DashboardRecipesIndexRoute
+    DashboardIndexRoute: typeof DashboardIndexRoute;
+    DashboardMenusIdRoute: typeof DashboardMenusIdRoute;
+    DashboardRecipesIdRoute: typeof DashboardRecipesIdRoute;
+    DashboardMenusIndexRoute: typeof DashboardMenusIndexRoute;
+    DashboardRecipesIndexRoute: typeof DashboardRecipesIndexRoute;
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardIndexRoute: DashboardIndexRoute,
-  DashboardMenusIdRoute: DashboardMenusIdRoute,
-  DashboardRecipesIdRoute: DashboardRecipesIdRoute,
-  DashboardMenusIndexRoute: DashboardMenusIndexRoute,
-  DashboardRecipesIndexRoute: DashboardRecipesIndexRoute,
-}
+    DashboardIndexRoute: DashboardIndexRoute,
+    DashboardMenusIdRoute: DashboardMenusIdRoute,
+    DashboardRecipesIdRoute: DashboardRecipesIdRoute,
+    DashboardMenusIndexRoute: DashboardMenusIndexRoute,
+    DashboardRecipesIndexRoute: DashboardRecipesIndexRoute,
+};
 
-const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
-  DashboardRouteRouteChildren,
-)
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(DashboardRouteRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
-  publicRouteRoute: publicRouteRouteWithChildren,
-  DashboardRouteRoute: DashboardRouteRouteWithChildren,
-}
-export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+    publicRouteRoute: publicRouteRouteWithChildren,
+    DashboardRouteRoute: DashboardRouteRouteWithChildren,
+};
+export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
