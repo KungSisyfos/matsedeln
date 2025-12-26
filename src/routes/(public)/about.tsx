@@ -27,7 +27,6 @@ function AboutPage() {
                         </p>
                     </div>
 
-                    {/* Feature Cards */}
                     <div className="grid md:grid-cols-3 gap-8 mb-20">
                         <Card className="border-2 hover:border-indigo-200 transition-all hover:shadow-lg">
                             <CardContent className="pt-6">
@@ -71,25 +70,11 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* How It Works */}
             <section className="py-20 px-6 bg-white/50">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-12">Så fungerar det</h2>
 
                     <div className="space-y-8">
-                        <div className="flex gap-6 items-start">
-                            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
-                                1
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-semibold mb-2">Lägg till dina recept</h3>
-                                <p className="text-gray-600">
-                                    Börja med att bygga ditt receptbibliotek. Kategorisera recept som vegetariskt, kött,
-                                    fisk, pasta eller soppa. Inkludera ingredienser, tillagningstid och portioner.
-                                </p>
-                            </div>
-                        </div>
-
                         <div className="flex gap-6 items-start">
                             <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
                                 2
@@ -119,7 +104,6 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* Perfect For */}
             <section className="py-20 px-6">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-12">Perfekt för</h2>
@@ -178,7 +162,6 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* CTA Section */}
             <section className="py-20 px-6 bg-linear-to-r from-indigo-600 to-purple-600 text-white">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-4xl font-bold mb-6">Redo att förenkla din matsedelsplanering?</h2>
