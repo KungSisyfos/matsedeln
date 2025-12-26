@@ -1,4 +1,4 @@
-import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, Link, Navigate, useNavigate } from '@tanstack/react-router';
 import { supabase } from '../../lib/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
@@ -124,12 +124,12 @@ function RouteComponent() {
                                         />
                                         <Field>
                                             <div className="flex items-center">
-                                                <a
-                                                    href="#"
+                                                <Link
+                                                    to="/forgot-password"
                                                     className="ml-auto text-sm underline-offset-4 hover:underline"
                                                 >
                                                     Glömt ditt lösenord?
-                                                </a>
+                                                </Link>
                                             </div>
                                         </Field>
                                         <Field>

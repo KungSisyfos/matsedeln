@@ -15,6 +15,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as publicRegisterRouteImport } from './routes/(public)/register'
 import { Route as publicLoginRouteImport } from './routes/(public)/login'
+import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forgot-password'
 import { Route as publicAboutRouteImport } from './routes/(public)/about'
 import { Route as DashboardRecipesIndexRouteImport } from './routes/dashboard/recipes/index'
 import { Route as DashboardMenusIndexRouteImport } from './routes/dashboard/menus/index'
@@ -50,6 +51,11 @@ const publicLoginRoute = publicLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => publicRouteRoute,
 } as any)
+const publicForgotPasswordRoute = publicForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => publicRouteRoute,
+} as any)
 const publicAboutRoute = publicAboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -79,6 +85,7 @@ const DashboardMenusIdRoute = DashboardMenusIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/about': typeof publicAboutRoute
+  '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
   '/': typeof publicIndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/about': typeof publicAboutRoute
+  '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
   '/': typeof publicIndexRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/(public)': typeof publicRouteRouteWithChildren
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/(public)/about': typeof publicAboutRoute
+  '/(public)/forgot-password': typeof publicForgotPasswordRoute
   '/(public)/login': typeof publicLoginRoute
   '/(public)/register': typeof publicRegisterRoute
   '/(public)/': typeof publicIndexRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/dashboard'
     | '/about'
+    | '/forgot-password'
     | '/login'
     | '/register'
     | '/'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/about'
+    | '/forgot-password'
     | '/login'
     | '/register'
     | '/'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/(public)'
     | '/dashboard'
     | '/(public)/about'
+    | '/(public)/forgot-password'
     | '/(public)/login'
     | '/(public)/register'
     | '/(public)/'
@@ -201,6 +213,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicLoginRouteImport
       parentRoute: typeof publicRouteRoute
     }
+    '/(public)/forgot-password': {
+      id: '/(public)/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof publicForgotPasswordRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
     '/(public)/about': {
       id: '/(public)/about'
       path: '/about'
@@ -241,6 +260,7 @@ declare module '@tanstack/react-router' {
 
 interface publicRouteRouteChildren {
   publicAboutRoute: typeof publicAboutRoute
+  publicForgotPasswordRoute: typeof publicForgotPasswordRoute
   publicLoginRoute: typeof publicLoginRoute
   publicRegisterRoute: typeof publicRegisterRoute
   publicIndexRoute: typeof publicIndexRoute
@@ -248,6 +268,7 @@ interface publicRouteRouteChildren {
 
 const publicRouteRouteChildren: publicRouteRouteChildren = {
   publicAboutRoute: publicAboutRoute,
+  publicForgotPasswordRoute: publicForgotPasswordRoute,
   publicLoginRoute: publicLoginRoute,
   publicRegisterRoute: publicRegisterRoute,
   publicIndexRoute: publicIndexRoute,
