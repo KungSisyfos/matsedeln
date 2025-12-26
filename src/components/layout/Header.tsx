@@ -71,10 +71,7 @@ const Header = () => {
                                 <Link to="/register">Registrera dig</Link>
                             </li>
                             <li className="my-6 hover:underline underline-offset-8">
-                                <Link to="/">Om oss</Link>
-                            </li>
-                            <li className="my-6 hover:underline underline-offset-8">
-                                <Link to="/">Användarvillkor</Link>
+                                <Link to="/about">Om oss</Link>
                             </li>
                         </ul>
                     </CardContent>

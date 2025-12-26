@@ -1,4 +1,5 @@
 import matsedelnLogo from '@/assets/images/matsedelnLogo.png';
+import { Link } from '@tanstack/react-router';
 
 const Footer = () => {
     return (
@@ -12,12 +13,12 @@ const Footer = () => {
             <p className="text-white mx-5 mb-5">Skapar varierde måltidsplaner för svenska förskolor och skolor</p>
             <div className="flex flex-col space-around text-white px-5">
                 <h2 className="text-[#FFAB01] font-bold">Navigation</h2>
-                <a href="/">Hem</a>
-                <a href="/login">Logga in</a>
-                <a href="/register">Registrera Konto</a>
-                <a href="">Kontakt</a>
-                <a href="">FAQ</a>
+                <Link to="/">Hem</Link>
+                <Link to="/login">Logga in</Link>
+                <Link to="/register">Registrera Konto</Link>
+                <Link to="/about">Om oss</Link>
             </div>
+            <p className="text-xs mt-2">© 2024 Matsedeln. Alla rättigheter förbehållna.</p>
         </div>
     );
 };
