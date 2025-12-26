@@ -45,8 +45,8 @@ const AppSidebar = () => {
             icon: UserPlus,
         },
         {
-            title: 'Terms of Service',
-            url: '/terms',
+            title: 'Om oss',
+            url: '/about',
             icon: Library,
         },
     ];
