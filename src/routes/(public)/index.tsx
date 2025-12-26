@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { createFileRoute, Navigate } from '@tanstack/react-router';
+import { createFileRoute, Link, Navigate } from '@tanstack/react-router';
 import { ArrowRight, BookOpen, CalendarCheck, HardDriveDownload, Tally1, Tally2, Tally3 } from 'lucide-react';
 
 export const Route = createFileRoute('/(public)/')({
@@ -25,11 +25,13 @@ function RouteComponent() {
                     </p>
                 </div>
                 <div className="my-5 md:w-1/4">
-                    <Button className="w-full mb-3 p-2 bg-[#FFAB01] text-[#251AD1] font-bold ">
-                        Börja Planera <ArrowRight className="mt-1" />
+                    <Button className="w-full mb-3 p-2 bg-[#FFAB01] text-[#251AD1] font-bold" asChild>
+                        <Link to="/login">
+                            Börja Planera <ArrowRight className="mt-1" />
+                        </Link>
                     </Button>
-                    <Button className="w-full bg-[#251AD1] border-solid font-bold border-white border">
-                        Lär dig mer
+                    <Button className="w-full bg-[#251AD1] border-solid font-bold border-white border" asChild>
+                        <Link to="/about">Lär dig mer</Link>
                     </Button>
                 </div>
             </div>

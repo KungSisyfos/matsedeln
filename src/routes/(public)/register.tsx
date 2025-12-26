@@ -1,4 +1,4 @@
-import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { supabase } from '../../lib/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -17,8 +17,6 @@ export const Route = createFileRoute('/(public)/register')({
 });
 
 function RouteComponent() {
-    const context = Route.useRouteContext();
-    const { auth } = context;
     const navigate = useNavigate();
 
     const formSchema = z
@@ -58,6 +56,7 @@ function RouteComponent() {
             terms: false,
         },
     });
+
     const onSubmit = async (formValues: z.infer<typeof formSchema>) => {
         setLoading(true);
         setError(null);
@@ -74,8 +73,11 @@ function RouteComponent() {
             if (data?.user?.identities?.length === 0) {
                 toast.error('En användare med denna email finns redan');
             } else {
-                toast.success('Konto skapat! Kolla din email för att bekräfta.');
-                navigate({ to: '/login' });
+                toast.success('Konto skapat! Du skickas nu vidare så att du kan logga in.');
+                navigate({
+                    to: '/login',
+                    search: { registered: 'true' },
+                });
             }
             navigate({ to: '/login' });
         } catch (err) {
@@ -83,10 +85,9 @@ function RouteComponent() {
                 setError(err.message);
                 toast.error(err.message);
             }
+            setLoading(false);
         }
     };
-
-    if (auth?.user) return <Navigate to="/dashboard" />;
     return (
         <>
             {loading && <Spinner />}

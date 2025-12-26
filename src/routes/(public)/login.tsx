@@ -1,7 +1,7 @@
 import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
 import { supabase } from '../../lib/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Field, FieldLabel, FieldDescription, FieldGroup } from '@/components/ui/field';
@@ -10,14 +10,19 @@ import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
+
 export const Route = createFileRoute('/(public)/login')({
     component: RouteComponent,
+    validateSearch: z.object({
+        registered: z.string().optional(),
+    }).parse,
 });
 
 function RouteComponent() {
     const context = Route.useRouteContext();
     const { auth } = context;
     const navigate = useNavigate();
+    const search = Route.useSearch();
 
     const formSchema = z.object({
         email: z.email(),
@@ -35,6 +40,14 @@ function RouteComponent() {
         },
     });
 
+    useEffect(() => {
+        if (search.registered === 'true') {
+            toast.success('Ditt konto är registrerat! Vänligen logga in.', {
+                duration: 5000,
+            });
+        }
+    }, [search.registered]);
+
     const onSubmit = async (formValues: z.infer<typeof formSchema>) => {
         setLoading(true);
         setError(null);
@@ -45,13 +58,16 @@ function RouteComponent() {
                 password: formValues.password,
             });
             if (error) throw error;
+
+            toast.success('Välkommen tillbaka!');
             navigate({ to: '/dashboard' });
         } catch (err) {
             if (err instanceof Error) {
                 setError(err.message);
-                toast.error(err.message);
+                toast.error('Fel vid inloggning' + err.message);
             } else {
                 setError('Unknown error has occured');
+                toast.error('Ett okänt fel har inträffat');
             }
         }
         setLoading(false);
